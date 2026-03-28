@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Don Diego – Productos Naturales</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#f9f3e8;--brown-dark:#3b2a1a;--brown-mid:#7a4f2e;--brown-light:#c49a6c;--green-deep:#3a5a3a;--green-mid:#5a8a4a;--green-light:#a8c89a;--accent:#d4a843;--white:#fffef9;--shadow:rgba(59,42,26,0.15);}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--brown-dark);overflow-x:hidden;}
+  /* NAV */
+  header{position:relative;background:var(--green-deep);min-height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(164,200,154,.18) 0%,transparent 60%),radial-gradient(ellipse at 10% 80%,rgba(212,168,67,.12) 0%,transparent 50%),linear-gradient(160deg,#2d4a2d 0%,#3a5a3a 50%,#2a3d2a 100%);}
+  .leaf{position:absolute;opacity:.07;font-size:200px;user-select:none;animation:sway 8s ease-in-out infinite;}
+  .leaf-1{top:-40px;right:-30px;transform:rotate(30deg);}
+  .leaf-2{bottom:-60px;left:-40px;transform:rotate(-20deg);font-size:280px;animation-delay:3s;}
+  .leaf-3{top:40%;left:55%;transform:rotate(60deg);font-size:120px;animation-delay:5s;}
+  @keyframes sway{0%,100%{transform:rotate(var(--r,30deg)) scale(1);}50%{transform:rotate(calc(var(--r,30deg) + 5deg)) scale(1.03);}}
+  nav{position:relative;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:24px 60px;}
+  .logo{font-family:'Playfair Display',serif;color:var(--cream);font-size:1.6rem;font-weight:700;letter-spacing:1px;text-decoration:none;}
+  .logo span{color:var(--accent);font-style:italic;}
+  .nav-links{display:flex;gap:36px;list-style:none;}
+  .nav-links a{color:rgba(249,243,232,.8);text-decoration:none;font-size:.9rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;transition:color .3s;}
+  .nav-links a:hover{color:var(--accent);}
+  .hero-content{position:relative;z-index:5;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;animation:fadeUp 1s ease both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+  .hero-badge{background:rgba(212,168,67,.2);border:1px solid var(--accent);color:var(--accent);font-size:.75rem;letter-spacing:3px;text-transform:uppercase;padding:6px 20px;border-radius:40px;margin-bottom:28px;font-weight:700;}
+  .hero-title{font-family:'Playfair Display',serif;color:var(--cream);font-size:clamp(3rem,8vw,6.5rem);line-height:1.05;margin-bottom:12px;}
+  .hero-title em{color:var(--accent);font-style:italic;}
+  .hero-sub{color:rgba(249,243,232,.7);font-size:clamp(1rem,2vw,1.2rem);font-weight:300;letter-spacing:1px;margin-bottom:48px;max-width:500px;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+  .btn-primary{background:var(--accent);color:var(--brown-dark);padding:16px 36px;border-radius:4px;text-decoration:none;font-weight:700;font-size:.9rem;letter-spacing:1.5px;text-transform:uppercase;transition:all .3s;border:2px solid var(--accent);}
+  .btn-primary:hover{background:transparent;color:var(--accent);}
+  .btn-secondary{border:2px solid rgba(249,243,232,.4);color:var(--cream);padding:16px 36px;border-radius:4px;text-decoration:none;font-weight:700;font-size:.9rem;letter-spacing:1.5px;text-transform:uppercase;transition:all .3s;}
+  .btn-secondary:hover{border-color:var(--cream);background:rgba(249,243,232,.1);}
+  .hero-wave{position:absolute;bottom:-2px;left:0;width:100%;z-index:5;}
+  /* FEATURES */
+  .features{background:var(--brown-dark);display:flex;justify-content:center;flex-wrap:wrap;}
+  .feature-item{display:flex;align-items:center;gap:12px;padding:22px 40px;border-right:1px solid rgba(249,243,232,.1);color:var(--cream);font-size:.85rem;letter-spacing:1px;text-transform:uppercase;font-weight:700;}
+  .feature-item:last-child{border-right:none;}
+  /* PRODUCTOS */
+  #productos{background:var(--white);padding:80px 0;}
+  #productos .inner{max-width:1400px;margin:0 auto;padding:0 40px;}
+  .section-label{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--green-mid);font-weight:700;margin-bottom:12px;}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:var(--brown-dark);line-height:1.15;margin-bottom:32px;}
+  .section-title span{color:var(--green-mid);font-style:italic;}
+  .search-bar{position:relative;margin-bottom:20px;max-width:500px;}
+  .search-bar input{width:100%;padding:14px 20px 14px 48px;border:2px solid rgba(59,42,26,.15);border-radius:8px;font-family:'Lato',sans-serif;font-size:.95rem;color:var(--brown-dark);background:var(--cream);outline:none;transition:border .2s;}
+  .search-bar input:focus{border-color:var(--green-mid);}
+  .search-bar .si{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:1.1rem;color:var(--brown-light);}
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;}
+  .filter-btn{border:2px solid var(--brown-light);background:transparent;color:var(--brown-mid);padding:7px 18px;border-radius:40px;cursor:pointer;font-family:'Lato',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:all .25s;}
+  .filter-btn:hover,.filter-btn.active{background:var(--green-deep);border-color:var(--green-deep);color:var(--cream);}
+  .result-count{font-size:.85rem;color:var(--brown-mid);margin-bottom:20px;font-weight:700;}
+  .products-table{width:100%;border-collapse:collapse;}
+  .products-table thead th{background:var(--green-deep);color:var(--cream);padding:14px 16px;text-align:left;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;}
+  .products-table tbody tr{border-bottom:1px solid rgba(59,42,26,.08);transition:background .2s;cursor:pointer;}
+  .products-table tbody tr:hover{background:rgba(90,138,74,.07);}
+  .products-table td{padding:12px 16px;font-size:.88rem;vertical-align:middle;}
+  .td-code{color:var(--brown-light);font-size:.78rem;font-family:monospace;width:60px;}
+  .td-name{color:var(--brown-dark);font-weight:700;}
+  .td-cat{color:var(--green-mid);font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+  .td-price{text-align:right;font-family:'Playfair Display',serif;font-size:1rem;color:var(--brown-dark);white-space:nowrap;font-weight:700;}
+  .td-add{text-align:right;width:50px;}
+  .add-btn{background:var(--green-deep);color:var(--cream);border:none;width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;}
+  .add-btn:hover{background:var(--green-mid);transform:scale(1.1);}
+  .add-btn.added{background:var(--accent);color:var(--brown-dark);}
+  .pagination{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:32px;flex-wrap:wrap;}
+  .page-btn{background:transparent;border:2px solid var(--brown-light);color:var(--brown-mid);width:38px;height:38px;border-radius:6px;cursor:pointer;font-family:'Lato',sans-serif;font-weight:700;font-size:.85rem;transition:all .2s;}
+  .page-btn:hover,.page-btn.active{background:var(--green-deep);border-color:var(--green-deep);color:var(--cream);}
+  .page-btn:disabled{opacity:.35;cursor:not-allowed;}
+  .page-info{font-size:.85rem;color:var(--brown-mid);font-weight:700;padding:0 4px;}
+  /* CARRITO */
+  .cart-float{position:fixed;bottom:100px;right:28px;background:var(--brown-dark);color:var(--cream);width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;z-index:999;box-shadow:0 8px 30px rgba(0,0,0,.4);transition:transform .3s;border:none;}
+  .cart-float:hover{transform:scale(1.1);}
+  .cart-count{position:absolute;top:-6px;right:-6px;background:var(--accent);color:var(--brown-dark);width:22px;height:22px;border-radius:50%;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Lato',sans-serif;}
+  .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;opacity:0;pointer-events:none;transition:opacity .3s;}
+  .cart-overlay.open{opacity:1;pointer-events:all;}
+  .cart-drawer{position:fixed;top:0;right:-460px;width:440px;max-width:95vw;height:100vh;background:var(--white);z-index:1001;transition:right .4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.3);}
+  .cart-drawer.open{right:0;}
+  .cart-header{padding:28px 28px 20px;border-bottom:1px solid rgba(59,42,26,.1);display:flex;align-items:center;justify-content:space-between;}
+  .cart-header h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--brown-dark);}
+  .cart-close{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--brown-mid);}
+  .cart-items{flex:1;overflow-y:auto;padding:20px 28px;}
+  .cart-empty{text-align:center;color:#9a8878;padding:60px 0;font-size:.95rem;}
+  .cart-empty .ce-icon{font-size:3rem;margin-bottom:12px;}
+  .cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(59,42,26,.08);align-items:flex-start;}
+  .ci-info{flex:1;}
+  .ci-name{font-weight:700;font-size:.85rem;color:var(--brown-dark);line-height:1.3;margin-bottom:4px;}
+  .ci-price{font-size:.82rem;color:var(--green-mid);font-weight:700;}
+  .ci-qty{display:flex;align-items:center;gap:8px;margin-top:6px;}
+  .qty-btn{background:var(--cream);border:1px solid var(--brown-light);width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--brown-dark);}
+  .qty-btn:hover{background:var(--brown-dark);color:var(--cream);}
+  .qty-num{font-size:.9rem;font-weight:700;color:var(--brown-dark);min-width:20px;text-align:center;}
+  .cart-footer{padding:20px 28px 28px;border-top:1px solid rgba(59,42,26,.1);}
+  .cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+  .ct-label{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--brown-mid);font-weight:700;}
+  .ct-amount{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--brown-dark);}
+  .btn-whatsapp-cart{width:100%;background:#25D366;color:#fff;border:none;padding:16px;border-radius:6px;font-family:'Lato',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .3s;}
+  .btn-whatsapp-cart:hover{background:#1ebe59;transform:translateY(-1px);}
+  /* PEDIDO */
+  #pedido{background:var(--cream);padding:100px 0;}
+  #pedido .inner{max-width:1300px;margin:0 auto;padding:0 60px;}
+  .order-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+  .oi-item{display:flex;gap:16px;margin-bottom:28px;align-items:flex-start;}
+  .oi-icon{width:48px;height:48px;background:var(--green-deep);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+  .oi-text h4{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:4px;color:var(--brown-dark);}
+  .oi-text p{font-size:.88rem;color:#7a6a5a;line-height:1.5;}
+  .order-form{background:var(--white);border-radius:12px;padding:44px;box-shadow:0 10px 50px var(--shadow);}
+  .order-form h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--brown-dark);margin-bottom:28px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .form-group{margin-bottom:18px;}
+  .form-group label{display:block;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown-mid);font-weight:700;margin-bottom:8px;}
+  .form-group input,.form-group textarea,.form-group select{width:100%;padding:13px 16px;border:2px solid rgba(59,42,26,.12);border-radius:6px;font-family:'Lato',sans-serif;font-size:.92rem;color:var(--brown-dark);background:var(--cream);transition:border .2s;outline:none;}
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--green-mid);background:var(--white);}
+  .form-group textarea{resize:vertical;min-height:100px;}
+  .btn-submit{width:100%;background:var(--green-deep);color:var(--cream);border:none;padding:16px;border-radius:6px;font-family:'Lato',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .3s;margin-top:6px;}
+  .btn-submit:hover{background:var(--green-mid);transform:translateY(-2px);}
+  .success-msg{display:none;text-align:center;padding:28px;background:#e8f5e0;border-radius:8px;margin-top:20px;border:2px solid var(--green-light);}
+  .success-msg .sm-icon{font-size:2.5rem;margin-bottom:10px;}
+  .success-msg p{color:var(--green-deep);font-weight:700;font-size:1rem;}
+  /* NOSOTROS */
+  #nosotros{background:var(--green-deep);padding:100px 0;position:relative;overflow:hidden;}
+  #nosotros::before{content:'🌿';position:absolute;top:-40px;right:-40px;font-size:300px;opacity:.05;}
+  #nosotros .inner{max-width:1300px;margin:0 auto;padding:0 60px;}
+  #nosotros .section-label{color:var(--green-light);}
+  #nosotros .section-title{color:var(--cream);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .about-text{color:rgba(249,243,232,.8);font-size:1rem;line-height:1.9;}
+  .about-text p{margin-bottom:20px;}
+  .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .stat-card{background:rgba(249,243,232,.07);border:1px solid rgba(249,243,232,.15);border-radius:8px;padding:28px 24px;text-align:center;}
+  .stat-num{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--accent);display:block;line-height:1;margin-bottom:6px;}
+  .stat-label{color:rgba(249,243,232,.7);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;}
+  footer{background:var(--brown-dark);padding:60px;text-align:center;}
+  .footer-logo{font-family:'Playfair Display',serif;color:var(--cream);font-size:2rem;margin-bottom:16px;display:block;}
+  .footer-logo span{color:var(--accent);font-style:italic;}
+  .footer-tagline{color:rgba(249,243,232,.5);font-size:.85rem;margin-bottom:32px;letter-spacing:1px;}
+  .footer-divider{border:none;border-top:1px solid rgba(249,243,232,.1);margin:28px auto;max-width:200px;}
+  .footer-copy{color:rgba(249,243,232,.4);font-size:.78rem;letter-spacing:1px;}
+  .wa-float{position:fixed;bottom:28px;right:28px;background:#25D366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;z-index:998;box-shadow:0 6px 24px rgba(37,211,102,.5);transition:all .3s;animation:waPulse 3s ease-in-out infinite;}
+  .wa-float:hover{transform:scale(1.12);background:#1ebe59;}
+  @keyframes waPulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.5);}50%{box-shadow:0 6px 32px rgba(37,211,102,.8);}}
+  .wa-float svg{width:30px;height:30px;fill:#fff;}
+  .hamburger{display:none;background:none;border:none;color:var(--cream);font-size:1.6rem;cursor:pointer;}
+  .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--brown-dark);color:var(--cream);padding:12px 24px;border-radius:40px;font-size:.85rem;font-weight:700;z-index:2000;opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);pointer-events:none;white-space:nowrap;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .no-results{text-align:center;padding:60px 20px;color:var(--brown-mid);}
+  .no-results .nr-icon{font-size:3rem;margin-bottom:12px;}
+  @media(max-width:900px){
+    nav{padding:20px 24px;}
+    .nav-links{display:none;}
+    .hamburger{display:block;}
+    #productos .inner{padding:0 16px;}
+    #pedido .inner,#nosotros .inner{padding:0 24px;}
+    .order-grid,.about-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .order-form{padding:28px 20px;}
+    footer{padding:40px 24px;}
+    .features{display:none;}
+    .products-table thead th:first-child,.products-table td:first-child,
+    .products-table thead th:nth-child(3),.products-table td:nth-child(3){display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hero-bg"></div>
+  <div class="leaf leaf-1">🌿</div>
+  <div class="leaf leaf-2">🍃</div>
+  <div class="leaf leaf-3">🌱</div>
+  <nav>
+    <a href="#" class="logo">Don <span>Diego</span></a>
+    <ul class="nav-links">
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#pedido">Hacer Pedido</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+  </nav>
+  <div class="hero-content">
+    <div class="hero-badge">🌱 Lista de precios vigente desde 18/03/2026</div>
+    <h1 class="hero-title">La naturaleza<br>en tu <em>mesa</em></h1>
+    <p class="hero-sub">Más de 1.000 productos naturales, orgánicos y saludables. Directo al precio de lista.</p>
+    <div class="hero-actions">
+      <a href="#productos" class="btn-primary">Ver Productos</a>
+      <a href="#pedido" class="btn-secondary">Hacer un Pedido</a>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,60 C360,0 1080,90 1440,30 L1440,80 L0,80 Z" fill="#f7f2e8"/>
+  </svg>
+</header>
+
+<div class="features">
+  <div class="feature-item"><span>🌿</span> +1000 Productos</div>
+  <div class="feature-item"><span>🚚</span> Envío a domicilio</div>
+  <div class="feature-item"><span>💬</span> Atención por WhatsApp</div>
+  <div class="feature-item"><span>✅</span> Precios actualizados</div>
+</div>
+
+<section id="productos">
+  <div class="inner">
+    <p class="section-label">Catálogo completo</p>
+    <h2 class="section-title">Nuestros <span>Productos</span></h2>
+    <div class="search-bar">
+      <span class="si">🔍</span>
+      <input type="text" id="searchInput" placeholder="Buscar producto..." oninput="handleSearch()">
+    </div>
+    <div class="filter-bar" id="filterBar"></div>
+    <div class="result-count" id="resultCount"></div>
+    <div style="overflow-x:auto;">
+      <table class="products-table">
+        <thead><tr><th>Cód.</th><th>Producto</th><th>Rubro</th><th style="text-align:right">Precio</th><th></th></tr></thead>
+        <tbody id="productsBody"></tbody>
+      </table>
+    </div>
+    <div id="noResults" class="no-results" style="display:none"><div class="nr-icon">🌿</div><p>No se encontraron productos.</p></div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+</section>
+
+<section id="pedido">
+  <div class="inner">
+    <p class="section-label">Es fácil y rápido</p>
+    <h2 class="section-title">Hacé tu <span>Pedido</span></h2>
+    <div class="order-grid">
+      <div class="order-info">
+        <div class="oi-item"><div class="oi-icon">🛒</div><div class="oi-text"><h4>Elegí tus productos</h4><p>Agregá lo que quieras al carrito desde el catálogo o escribinos directamente por WhatsApp.</p></div></div>
+        <div class="oi-item"><div class="oi-icon">📋</div><div class="oi-text"><h4>Completá el formulario</h4><p>Dejanos tus datos y te contactamos para confirmar el pedido y coordinar la entrega.</p></div></div>
+        <div class="oi-item"><div class="oi-icon">🚚</div><div class="oi-text"><h4>Recibís en casa</h4><p>Coordinamos el envío o podés pasar a retirar tu pedido de manera presencial.</p></div></div>
+        <div class="oi-item"><div class="oi-icon">💳</div><div class="oi-text"><h4>Formas de pago</h4><p>Efectivo, transferencia bancaria o MercadoPago. ¡Como prefieras!</p></div></div>
+      </div>
+      <div class="order-form">
+        <h3>Formulario de Pedido</h3>
+        <div class="form-row">
+          <div class="form-group"><label>Nombre *</label><input type="text" id="nombre" placeholder="Tu nombre"></div>
+          <div class="form-group"><label>Apellido *</label><input type="text" id="apellido" placeholder="Tu apellido"></div>
+        </div>
+        <div class="form-group"><label>Teléfono / WhatsApp *</label><input type="tel" id="telefono" placeholder="Ej: 341 555-1234"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="email" placeholder="tucorreo@email.com"></div>
+        <div class="form-group">
+          <label>Tipo de entrega</label>
+          <select id="entrega" onchange="toggleDir()">
+            <option value="">Seleccioná una opción</option>
+            <option value="Envío a domicilio">Envío a domicilio</option>
+            <option value="Retiro en tienda">Retiro en tienda</option>
+          </select>
+        </div>
+        <div class="form-group" id="dirGroup" style="display:none"><label>Dirección de entrega</label><input type="text" id="direccion" placeholder="Calle, número, ciudad"></div>
+        <div class="form-group"><label>Tu Pedido *</label><textarea id="pedidoTexto" placeholder="Ej: 2x Yerba Mate Tucangua x500g, 1x Aceite de Coco Napus Virgen x360ml..."></textarea></div>
+        <button class="btn-submit" onclick="enviarPedido()">Enviar Pedido 🌿</button>
+        <div class="success-msg" id="successMsg"><div class="sm-icon">✅</div><p>¡Pedido recibido! Te contactamos en breve.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros">
+  <div class="inner">
+    <p class="section-label">Nuestra historia</p>
+    <h2 class="section-title">Por qué <span style="color:var(--accent)">Don Diego</span></h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Don Diego nació del amor por la naturaleza y la convicción de que los remedios más poderosos los ofrece la tierra. Trabajamos con los mejores proveedores para traerte una variedad enorme de productos naturales, orgánicos y saludables.</p>
+        <p>Aceites, harinas, legumbres, semillas, hierbas medicinales, frutos secos, suplementos, yerba, té y mucho más. Todo en un solo lugar, con precios actualizados y atención personalizada.</p>
+        <p>Porque la salud no es un lujo — es un derecho, y en Don Diego hacemos todo lo posible para que esté al alcance de todos.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card"><span class="stat-num">+1000</span><span class="stat-label">Productos</span></div>
+        <div class="stat-card"><span class="stat-num">40+</span><span class="stat-label">Rubros</span></div>
+        <div class="stat-card"><span class="stat-num">100%</span><span class="stat-label">Natural</span></div>
+        <div class="stat-card"><span class="stat-num">♡</span><span class="stat-label">Con amor local</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">Don <span>Diego</span></span>
+  <p class="footer-tagline">Productos naturales · Para tu bienestar</p>
+  <hr class="footer-divider">
+  <p class="footer-copy">© 2026 Don Diego Productos Naturales · Lista de precios vigente desde 18/03/2026</p>
+</footer>
+
+<a href="https://wa.me/5493413000000?text=Hola%20Don%20Diego!%20Quiero%20hacer%20un%20pedido%20%F0%9F%98%8A" target="_blank" class="wa-float" title="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<button class="cart-float" onclick="toggleCart()">🛒<span class="cart-count" id="cartCount" style="display:none">0</span></button>
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header"><h3>🛒 Mi Carrito</h3><button class="cart-close" onclick="toggleCart()">✕</button></div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty"><div class="ce-icon">🌿</div><p>Tu carrito está vacío.</p></div></div>
+  <div class="cart-footer">
+    <div class="cart-total"><span class="ct-label">Total</span><span class="ct-amount" id="cartTotal">$0</span></div>
+    <button class="btn-whatsapp-cart" onclick="pedidoWA()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Pedir por WhatsApp
+    </button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const WA='5493413000000'; // ← Reemplazá con tu número real
+const PER_PAGE=50;
+let pg=1, filter='todos', q='', cart={};
+
+const products=[
+  {id:'2270',name:'Aceite Canola Krol c/Oliva x250ml',cat:'Aceites Vegetales',price:6950},
+  {id:'1552',name:'Aceite Canola Krol Pet x500ml',cat:'Aceites Vegetales',price:6360},
+  {id:'0760',name:'Aceite Canola Krol x250ml',cat:'Aceites Vegetales',price:5900},
+  {id:'0654',name:'Aceite de Cannabis CBD 5% Eco Natural 10ml',cat:'Aceites Vegetales',price:4100},
+  {id:'1553',name:'Aceite de Canola Krol c/Chía x250ml',cat:'Aceites Vegetales',price:2400},
+  {id:'3168',name:'Aceite de Chía Nutrasen x250ml',cat:'Aceites Vegetales',price:8500},
+  {id:'4121',name:'Aceite de Coco Chennai Neutro x360ml',cat:'Aceites Vegetales',price:7150},
+  {id:'3235',name:'Aceite de Coco Chennai Neutro x660ml',cat:'Aceites Vegetales',price:12580},
+  {id:'4115',name:'Aceite de Coco Chennai Virgen x360ml',cat:'Aceites Vegetales',price:10500},
+  {id:'4114',name:'Aceite de Coco Chennai Virgen x660ml',cat:'Aceites Vegetales',price:14600},
+  {id:'2878',name:'Aceite de Coco Entrenuts Neutro x200cc',cat:'Aceites Vegetales',price:3550},
+  {id:'2879',name:'Aceite de Coco Entrenuts Neutro x360cc',cat:'Aceites Vegetales',price:5590},
+  {id:'2880',name:'Aceite de Coco Entrenuts Virgen x200cc',cat:'Aceites Vegetales',price:6300},
+  {id:'2881',name:'Aceite de Coco Entrenuts Virgen x360cc',cat:'Aceites Vegetales',price:10900},
+  {id:'0897',name:'Aceite de Coco Napus Neutro x360ml',cat:'Aceites Vegetales',price:6100},
+  {id:'0898',name:'Aceite de Coco Napus Neutro x660ml',cat:'Aceites Vegetales',price:8800},
+  {id:'0759',name:'Aceite de Coco Napus Virgen x200ml',cat:'Aceites Vegetales',price:6500},
+  {id:'0896',name:'Aceite de Coco Napus Virgen x360ml',cat:'Aceites Vegetales',price:10500},
+  {id:'4149',name:'Aceite de Coco Napus Virgen x660ml',cat:'Aceites Vegetales',price:17550},
+  {id:'2894',name:'Aceite de Girasol Estancia A.Oleico x500ml',cat:'Aceites Vegetales',price:3400},
+  {id:'4190',name:'Aceite de Lino Nutrasen x250ml',cat:'Aceites Vegetales',price:5050},
+  {id:'2704',name:'Aceite de Orégano x20cm3',cat:'Aceites Vegetales',price:10990},
+  {id:'3236',name:'Aceite de Sésamo He Shun Yuan x150ml',cat:'Aceites Vegetales',price:5990},
+  {id:'3169',name:'Aceite de Sésamo Nutrasen x250ml',cat:'Aceites Vegetales',price:5380},
+  {id:'2197',name:'Aceite de Girasol Granix A.Oleico x750ml',cat:'Aceites y Salsas',price:4100},
+  {id:'4223',name:'Aceite de Oliva 7 Lagos E.V. x500ml',cat:'Aceites y Salsas',price:12900},
+  {id:'2940',name:'Aceite de Oliva 7 Lagos Org.EV x1/2L',cat:'Aceites y Salsas',price:13900},
+  {id:'4083',name:'Aceite de Oliva D.Juana Ajo-Tomate x500ml',cat:'Aceites y Salsas',price:9400},
+  {id:'4221',name:'Aceite de Oliva Fontalba x1L',cat:'Aceites y Salsas',price:12900},
+  {id:'4222',name:'Aceite de Oliva Fontalba x3L',cat:'Aceites y Salsas',price:35100},
+  {id:'0121',name:'Aceite de Oliva Poman EV x1L',cat:'Aceites y Salsas',price:15000},
+  {id:'0316',name:'Aceite de Oliva Poman EV x500ml',cat:'Aceites y Salsas',price:9900},
+  {id:'0630',name:'Aceite de Oliva R.Vivar EV x500ml',cat:'Aceites y Salsas',price:8900},
+  {id:'0631',name:'Aceite de Oliva R.Vivar EV x1L',cat:'Aceites y Salsas',price:15500},
+  {id:'3290',name:'Aceite de Palta Extra V. Ganofi x250ml',cat:'Aceites y Salsas',price:9560},
+  {id:'3289',name:'Aceite de Palta Extra V. Ganofi x500ml',cat:'Aceites y Salsas',price:15400},
+  {id:'0761',name:'Aceite de Uva Olivi x500ml',cat:'Aceites y Salsas',price:5990},
+  {id:'0900',name:'Aceto Balsámico Casalta Clásico x400ml',cat:'Aceites y Salsas',price:4900},
+  {id:'1040',name:'Aceto Balsámico Casalta Ahumado x400ml',cat:'Aceites y Salsas',price:4900},
+  {id:'1041',name:'Aceto Balsámico Casalta Reducción x400ml',cat:'Aceites y Salsas',price:6400},
+  {id:'4199',name:'Manteca de Coco Qualicoco x200g',cat:'Aceites y Salsas',price:6300},
+  {id:'4074',name:'Mayonesa de Coco Qualicoco x400g',cat:'Aceites y Salsas',price:6500},
+  {id:'4188',name:'Queso Untable Qualicoco x200g',cat:'Aceites y Salsas',price:3500},
+  {id:'1062',name:'Salsa de Soja Agibo Superior x500ml',cat:'Aceites y Salsas',price:2750},
+  {id:'0070',name:'Salsa de Soja Bitarwan Extra x1L',cat:'Aceites y Salsas',price:6470},
+  {id:'0562',name:'Salsa de Soja Bitarwan Tradicional x500ml',cat:'Aceites y Salsas',price:2860},
+  {id:'1169',name:'Salsa de Soja Fumeiga Bajo Sodio x500ml',cat:'Aceites y Salsas',price:3300},
+  {id:'0763',name:'Salsa Tabasco Original x60ml',cat:'Aceites y Salsas',price:3400},
+  {id:'2861',name:'Salsa Teriyaki c/Vino Pampagourmet x285g',cat:'Aceites y Salsas',price:4700},
+  {id:'0146',name:'Vinagre Bitarwan c/Especias x250cc',cat:'Aceites y Salsas',price:1620},
+  {id:'0945',name:'Barra Choco Copani 100% Cacao x63g',cat:'Chocolate y Barras',price:5900},
+  {id:'0891',name:'Barra Choco Copani 70% FS x63g',cat:'Chocolate y Barras',price:4400},
+  {id:'0973',name:'Barra Choco Copani 80% Cacao x63g',cat:'Chocolate y Barras',price:4600},
+  {id:'0974',name:'Barra Choco Copani 70% Stevia x63g',cat:'Chocolate y Barras',price:4600},
+  {id:'4118',name:'Barra Choco Copani Dubai x100g',cat:'Chocolate y Barras',price:8690},
+  {id:'4075',name:'Barra Choco Copani c/Pistacho x63g',cat:'Chocolate y Barras',price:4600},
+  {id:'0817',name:'Barra Choco Copani Coco Stevia x63g',cat:'Chocolate y Barras',price:4200},
+  {id:'0944',name:'Barra Choco Copani S/Az. x63g',cat:'Chocolate y Barras',price:4150},
+  {id:'1297',name:'Barra Choco Mapsa S/Az. x100g',cat:'Chocolate y Barras',price:4900},
+  {id:'0710',name:'Almendras c/Chocolate Negro x1kg',cat:'Bañados y Garrapiñadas',price:29900},
+  {id:'1916',name:'Almendras c/Chocolate Blanco x1kg',cat:'Bañados y Garrapiñadas',price:29900},
+  {id:'3240',name:'Arándanos c/Choco.Bco-Yogur Argenfrut x1kg',cat:'Bañados y Garrapiñadas',price:31000},
+  {id:'2550',name:'Arándanos c/Chocolate x1kg',cat:'Bañados y Garrapiñadas',price:22200},
+  {id:'0311',name:'Avellanas con Chocolate x1kg',cat:'Bañados y Garrapiñadas',price:31800},
+  {id:'2276',name:'Bombones Copani 70% Cacao x120g',cat:'Bañados y Garrapiñadas',price:6500},
+  {id:'1079',name:'Garrapiñada de Almendra x1kg',cat:'Bañados y Garrapiñadas',price:21200},
+  {id:'2939',name:'Garrapiñada de Caju c/Sésamo x1kg',cat:'Bañados y Garrapiñadas',price:16000},
+  {id:'0552',name:'Garrapiñada de Girasol x1kg',cat:'Bañados y Garrapiñadas',price:8500},
+  {id:'1083',name:'Garrapiñada de Maní x1kg',cat:'Bañados y Garrapiñadas',price:8200},
+  {id:'0618',name:'Maní Bañado c/Chocolate Negro x1kg',cat:'Bañados y Garrapiñadas',price:16700},
+  {id:'1915',name:'Maní Bañado c/Chocolate Blanco x1kg',cat:'Bañados y Garrapiñadas',price:16700},
+  {id:'0292',name:'Pasas de Uva c/Chocolate Negro x1kg',cat:'Bañados y Garrapiñadas',price:22900},
+  {id:'2346',name:'Pasas de Uva c/Chocolate Blanco x1kg',cat:'Bañados y Garrapiñadas',price:22900},
+  {id:'1793',name:'Caldo Argendiet Verdura c/Sal x10s',cat:'Caldos y Deshidratados',price:990},
+  {id:'1275',name:'Caldo Argendiet Verdura S/Sal x10s',cat:'Caldos y Deshidratados',price:990},
+  {id:'1262',name:'Caldo Percal Carne c/Sal x1kg',cat:'Caldos y Deshidratados',price:3950},
+  {id:'0218',name:'Caldo Percal Gallina c/Sal x1kg',cat:'Caldos y Deshidratados',price:3950},
+  {id:'2211',name:'Caldo Percal Verdura c/Sal x1kg',cat:'Caldos y Deshidratados',price:3950},
+  {id:'1415',name:'Caldo Percal Verdura S/Sal x1kg',cat:'Caldos y Deshidratados',price:6200},
+  {id:'0236',name:'Hongos de Pino Bolletus x1kg',cat:'Caldos y Deshidratados',price:20800},
+  {id:'2135',name:'Hongos de Pino Bolletus x500g',cat:'Caldos y Deshidratados',price:11000},
+  {id:'4049',name:'Hongos Shitake Enteros x25g',cat:'Caldos y Deshidratados',price:1690},
+  {id:'4036',name:'Hongos Shitake Laminados x25g',cat:'Caldos y Deshidratados',price:1850},
+  {id:'0462',name:'Soja Texturizada x1kg',cat:'Caldos y Deshidratados',price:1900},
+  {id:'0048',name:'Tomate en Mitades Desecado x1kg',cat:'Caldos y Deshidratados',price:12900},
+  {id:'1917',name:'Tomate en Mitades Desecado x500g',cat:'Caldos y Deshidratados',price:7000},
+  {id:'1160',name:'Caramelos Garcia Ambay x750g',cat:'Caramelos y Propóleo',price:6450},
+  {id:'1166',name:'Caramelos Garcia Arándanos x750g',cat:'Caramelos y Propóleo',price:6020},
+  {id:'1164',name:'Caramelos Garcia Jengibre x750g',cat:'Caramelos y Propóleo',price:7080},
+  {id:'0932',name:'Caramelos Garcia Garganprol x750g',cat:'Caramelos y Propóleo',price:9670},
+  {id:'3275',name:'Miel Cremosa Garcia c/Propóleo x500g',cat:'Caramelos y Propóleo',price:5300},
+  {id:'2911',name:'Alfajor de Arroz Felicite DDL x12u',cat:'Celíacos S/TACC',price:6500},
+  {id:'2909',name:'Alfajor de Arroz Felicite Limón x12u',cat:'Celíacos S/TACC',price:6500},
+  {id:'2375',name:'Alfajores Yuka Surtidos x6u',cat:'Celíacos S/TACC',price:3500},
+  {id:'0166',name:'Almidón de Maíz Nani x500g',cat:'Celíacos S/TACC',price:1990},
+  {id:'2833',name:'Almidón de Maíz Natuzen x1kg',cat:'Celíacos S/TACC',price:2450},
+  {id:'3166',name:'Avena Cumana Instant. S/Gluten x400g',cat:'Celíacos S/TACC',price:1900},
+  {id:'3122',name:'Arándanos Cumana Dpack x150g',cat:'Celíacos S/TACC',price:2390},
+  {id:'2487',name:'Biscuits Smams x120g',cat:'Celíacos S/TACC',price:2500},
+  {id:'2490',name:'Budín Smams c/Chips Choco x250g',cat:'Celíacos S/TACC',price:4100},
+  {id:'2484',name:'Budín Smams Limón x250g',cat:'Celíacos S/TACC',price:4100},
+  {id:'2491',name:'Budín Smams Vainilla x250g',cat:'Celíacos S/TACC',price:4100},
+  {id:'1574',name:'Dulce de Leche LNE Stevia x454g',cat:'Celíacos S/TACC',price:4600},
+  {id:'1957',name:'Dulce de Leche Magdalena Coco Vega x400g',cat:'Celíacos S/TACC',price:6500},
+  {id:'1942',name:'Dulce de Leche Magdalena Stevia x400g',cat:'Celíacos S/TACC',price:5700},
+  {id:'0613',name:'Fideo Arroz Party Natural x280g',cat:'Celíacos S/TACC',price:2300},
+  {id:'2353',name:'Fideos Arroz Orox Natural x200g',cat:'Celíacos S/TACC',price:2100},
+  {id:'0529',name:'Fideos de Arroz Nani Mosta x350g',cat:'Celíacos S/TACC',price:1900},
+  {id:'3249',name:'Granola Patagonia G. c/Almen. x250g',cat:'Celíacos S/TACC',price:2720},
+  {id:'1800',name:'Granola Patagonia G. c/Almendras x500g',cat:'Celíacos S/TACC',price:4500},
+  {id:'1561',name:'Granola Patagonia G. Crocante x500g',cat:'Celíacos S/TACC',price:3660},
+  {id:'1427',name:'Harina de Arroz Natuzen x1kg',cat:'Celíacos S/TACC',price:2700},
+  {id:'3191',name:'Harina de Coco Cumana x1kg',cat:'Celíacos S/TACC',price:6300},
+  {id:'1869',name:'Mermelada Ccrecien. Stevia Arándano x280g',cat:'Celíacos S/TACC',price:3860},
+  {id:'1871',name:'Mermelada Ccrecien. Stevia Frutilla x280g',cat:'Celíacos S/TACC',price:3860},
+  {id:'3277',name:'Pan S/TACC Smams Clásico x200g',cat:'Celíacos S/TACC',price:3400},
+  {id:'2576',name:'Pan S/TACC Destac. Clásico x500g',cat:'Celíacos S/TACC',price:4350},
+  {id:'2577',name:'Pan S/TACC Destac. c/Sem. x500g',cat:'Celíacos S/TACC',price:4625},
+  {id:'3115',name:'Semilla de Chía Cumana Dpack x150g',cat:'Celíacos S/TACC',price:1990},
+  {id:'1343',name:'Aritos con Miel Lasfor x1kg',cat:'Cereales Desayuno',price:4700},
+  {id:'1317',name:'Aritos Frutales Lasfor x1kg',cat:'Cereales Desayuno',price:3800},
+  {id:'1233',name:'Copos de Maíz Integrales Granix x1kg',cat:'Cereales Desayuno',price:6100},
+  {id:'0790',name:'Quinoa Pop Yinyang x1kg',cat:'Cereales Desayuno',price:6400},
+  {id:'0969',name:'Quinoa Pop Yinyang c/Algarroba x80g',cat:'Cereales Desayuno',price:800},
+  {id:'1337',name:'Quinoa Pop Yinyang x80g',cat:'Cereales Desayuno',price:750},
+  {id:'0717',name:'Ositos Avena y Miel Lasfor x1kg',cat:'Cereales Desayuno',price:5490},
+  {id:'2987',name:'Almohaditas Lasfor Avellana x500g',cat:'Cereales Desayuno',price:3790},
+  {id:'2989',name:'Almohaditas Lasfor Choco x500g',cat:'Cereales Desayuno',price:4000},
+  {id:'0930',name:'Arroz Doble Carolina x1kg',cat:'Cereales y Legumbres',price:2200},
+  {id:'0034',name:'Arroz Doble Carolina x3kg',cat:'Cereales y Legumbres',price:6300},
+  {id:'0506',name:'Arroz Largo Fino Integral x1kg',cat:'Cereales y Legumbres',price:1590},
+  {id:'0378',name:'Arroz Yamani Integral x1kg',cat:'Cereales y Legumbres',price:1860},
+  {id:'1896',name:'Arroz Yamani Integral x3kg',cat:'Cereales y Legumbres',price:5400},
+  {id:'0929',name:'Arroz Yamani Pulido x1kg',cat:'Cereales y Legumbres',price:2150},
+  {id:'0379',name:'Arvejas Enteras x1kg',cat:'Cereales y Legumbres',price:1260},
+  {id:'0380',name:'Arvejas Partidas x1kg',cat:'Cereales y Legumbres',price:1390},
+  {id:'0542',name:'Avena Instantánea x1kg',cat:'Cereales y Legumbres',price:1900},
+  {id:'0390',name:'Avena Mediana x1kg',cat:'Cereales y Legumbres',price:1900},
+  {id:'2048',name:'Avena Extra Fina x1kg',cat:'Cereales y Legumbres',price:1900},
+  {id:'0381',name:'Garbanzos x1kg',cat:'Cereales y Legumbres',price:2200},
+  {id:'2071',name:'Garbanzos x3kg',cat:'Cereales y Legumbres',price:6300},
+  {id:'0383',name:'Lentejas x1kg',cat:'Cereales y Legumbres',price:2600},
+  {id:'1646',name:'Lentejas x3kg',cat:'Cereales y Legumbres',price:7500},
+  {id:'0317',name:'Lentejon x1kg',cat:'Cereales y Legumbres',price:2700},
+  {id:'0921',name:'Poroto Alubia x1kg',cat:'Cereales y Legumbres',price:2700},
+  {id:'0920',name:'Poroto Colorado x1kg',cat:'Cereales y Legumbres',price:2500},
+  {id:'0208',name:'Poroto de Soja x1kg',cat:'Cereales y Legumbres',price:1280},
+  {id:'0196',name:'Poroto Negro x1kg',cat:'Cereales y Legumbres',price:2570},
+  {id:'1025',name:'Poroto Mung x1kg',cat:'Cereales y Legumbres',price:1800},
+  {id:'0393',name:'Ají Molido Cumaná x1kg',cat:'Condimentos',price:8500},
+  {id:'0216',name:'Ajo Cumana Granulado x1kg',cat:'Condimentos',price:9600},
+  {id:'0518',name:'Ajo Cumana Polvo x1kg',cat:'Condimentos',price:6400},
+  {id:'0394',name:'Canela Cumana Molida x1kg',cat:'Condimentos',price:16250},
+  {id:'0172',name:'Cúrcuma Cumana Polvo x1kg',cat:'Condimentos',price:7900},
+  {id:'4217',name:'Cúrcuma Castello Ponte Polvo x1kg',cat:'Condimentos',price:7600},
+  {id:'0498',name:'Curry en Polvo Cumana x1kg',cat:'Condimentos',price:5990},
+  {id:'0195',name:'Condimento p/Arroz Cumana x1kg',cat:'Condimentos',price:9800},
+  {id:'0519',name:'Jengibre Cumana en Polvo x1kg',cat:'Condimentos',price:10650},
+  {id:'0939',name:'Jengibre Cumana en Trozos x500g',cat:'Condimentos',price:8400},
+  {id:'2337',name:'Laurel en Hojas Cumana x300g',cat:'Condimentos',price:5900},
+  {id:'0399',name:'Pimienta Negra Cumana Grano x1kg',cat:'Condimentos',price:21900},
+  {id:'0198',name:'Pimienta Negra Cumana Molida x1kg',cat:'Condimentos',price:21900},
+  {id:'0278',name:'Provenzal Cumana x1kg',cat:'Condimentos',price:9300},
+  {id:'3221',name:'Romero en Hojas Cumana x800g',cat:'Condimentos',price:7900},
+  {id:'1105',name:'Orégano Primera Nacional x1kg',cat:'Condimentos',price:7500},
+  {id:'1391',name:'Orégano Primera Nacional x500g',cat:'Condimentos',price:4000},
+  {id:'2509',name:'Orégano Cumana S/TACC x500g',cat:'Condimentos',price:4700},
+  {id:'1224',name:'Semilla Mostaza Cumana Mol. x1kg',cat:'Condimentos',price:5460},
+  {id:'1266',name:'Atún Cumana Lomito Natural x170g',cat:'Conservas',price:2500},
+  {id:'1346',name:'Atún Cumana Aceite Lomito x170g',cat:'Conservas',price:2500},
+  {id:'2868',name:'Atún Cumana Aceite Desmenuzado x170g',cat:'Conservas',price:1400},
+  {id:'0893',name:'Champignon Cumana Ent. x400g',cat:'Conservas',price:2800},
+  {id:'0894',name:'Champignon Cumana Lami. x400g',cat:'Conservas',price:2350},
+  {id:'0895',name:'Choclo Cumana Grano Amarillo x300g',cat:'Conservas',price:1210},
+  {id:'2548',name:'Garbanzo Cumana x300g',cat:'Conservas',price:860},
+  {id:'0151',name:'Palmitos Cumana en Trozos x396g',cat:'Conservas',price:1590},
+  {id:'0206',name:'Tomates Peritas c/Jugo Cumana x400g',cat:'Conservas',price:790},
+  {id:'0950',name:'Caballa Natural Cumana x380g',cat:'Conservas',price:3500},
+  {id:'0354',name:'Estevia Kony Líquida x100ml',cat:'Endulzantes y Café',price:2200},
+  {id:'0355',name:'Estevia Kony Líquida x200ml',cat:'Endulzantes y Café',price:3200},
+  {id:'1313',name:'Estevia Kony Líquida x500ml',cat:'Endulzantes y Café',price:6200},
+  {id:'0357',name:'Estevia Kony Polvo Sobre x100u',cat:'Endulzantes y Café',price:3480},
+  {id:'1868',name:'Estevia Kony Polvo x1kg',cat:'Endulzantes y Café',price:18900},
+  {id:'2069',name:'Eritritol El Peoncito x1kg',cat:'Endulzantes y Café',price:21600},
+  {id:'1569',name:'Estevia en Hojas x1kg',cat:'Endulzantes y Café',price:22100},
+  {id:'2035',name:'Estevia en Hojas x500g',cat:'Endulzantes y Café',price:12000},
+  {id:'2608',name:'Café Puro Aroma Grano L.Virginia x500g',cat:'Endulzantes y Café',price:7690},
+  {id:'0688',name:'Fideos Integ. LNE x400g',cat:'Fideos Integrales',price:1600},
+  {id:'0699',name:'Fideos Integ. LNE Espinaca x400g',cat:'Fideos Integrales',price:1690},
+  {id:'0687',name:'Fideos Integ. LNE Morrón x400g',cat:'Fideos Integrales',price:1690},
+  {id:'0931',name:'Fideos Integ. Pastazara Fusilli x500g',cat:'Fideos Integrales',price:4300},
+  {id:'2296',name:'Fideos Integ. Pastazara Penne R. x500g',cat:'Fideos Integrales',price:4300},
+  {id:'2297',name:'Fideos Integ. Pastazara Spaghe. x500g',cat:'Fideos Integrales',price:4300},
+  {id:'0489',name:'Arándanos Cumana Desecados x1kg',cat:'Frutas Desecadas',price:13200},
+  {id:'1897',name:'Arándanos LNE Desecados x500g',cat:'Frutas Desecadas',price:6500},
+  {id:'0297',name:'Chips de Banana x1kg',cat:'Frutas Desecadas',price:12200},
+  {id:'0063',name:'Ciruelas Dagen c/Car. x1kg',cat:'Frutas Desecadas',price:7700},
+  {id:'0061',name:'Ciruelas Dagen S/Carozo x1kg',cat:'Frutas Desecadas',price:9000},
+  {id:'0337',name:'Ciruelas Presidente S/C Mediana x1kg',cat:'Frutas Desecadas',price:8500},
+  {id:'1861',name:'Damascos Desec. Turquía x1kg',cat:'Frutas Desecadas',price:13500},
+  {id:'4189',name:'Dátil Medjoul Bandeja x215g',cat:'Frutas Desecadas',price:7500},
+  {id:'0713',name:'Dátiles c/C Egipto x1kg',cat:'Frutas Desecadas',price:7900},
+  {id:'3150',name:'Dátiles c/C Medjool x1kg',cat:'Frutas Desecadas',price:22200},
+  {id:'0064',name:'Higos Negros Desec. Medianos x1kg',cat:'Frutas Desecadas',price:10500},
+  {id:'0326',name:'Manzana Deshidratada en Cubo x500g',cat:'Frutas Desecadas',price:9900},
+  {id:'0341',name:'Mix Pasas Negra-Rubia-Arán. x1kg',cat:'Frutas Desecadas',price:8300},
+  {id:'0223',name:'Pasas de Uva Sultanina Negra S/S x1kg',cat:'Frutas Desecadas',price:4500},
+  {id:'0035',name:'Pasas de Uva Jumbo S/Semilla x1kg',cat:'Frutas Desecadas',price:5500},
+  {id:'0062',name:'Peras en Mitades Medianas x1kg',cat:'Frutas Desecadas',price:10500},
+  {id:'0576',name:'Almendras S/Cáscara Carmel x1kg',cat:'Frutos Secos',price:21000},
+  {id:'0500',name:'Almendras S/Cáscara Nonpareil x1kg',cat:'Frutos Secos',price:22900},
+  {id:'0235',name:'Almendras S/Casc. Ramilladas x1kg',cat:'Frutos Secos',price:16900},
+  {id:'0261',name:'Avellanas S/Cáscara x1kg',cat:'Frutos Secos',price:34900},
+  {id:'1016',name:'Castañas de Caju W4 x1kg',cat:'Frutos Secos',price:16400},
+  {id:'0798',name:'Castañas de Caju P3 Partidas x1kg',cat:'Frutos Secos',price:14900},
+  {id:'0232',name:'Maní c/Cáscara Boliviano x1kg',cat:'Frutos Secos',price:5900},
+  {id:'0332',name:'Maní Crudo Runner x1kg',cat:'Frutos Secos',price:2800},
+  {id:'0303',name:'Maní Repelado Sin Sal x1kg',cat:'Frutos Secos',price:2900},
+  {id:'0333',name:'Maní Repelado con Sal x1kg',cat:'Frutos Secos',price:3000},
+  {id:'0260',name:'Mix Frutos Secos LNE x1kg',cat:'Frutos Secos',price:9800},
+  {id:'0334',name:'Mix Frutos Secos S/Pasas LNE x1kg',cat:'Frutos Secos',price:13900},
+  {id:'0873',name:'Mix Frutos S. S/Pasas S/Maní x1kg',cat:'Frutos Secos',price:22400},
+  {id:'0049',name:'Nueces c/C. Medianas Eleg. x1kg',cat:'Frutos Secos',price:6800},
+  {id:'0230',name:'Nueces S/C Doradas x1kg',cat:'Frutos Secos',price:14500},
+  {id:'0101',name:'Nueces S/C Mariposa Blanca x1kg',cat:'Frutos Secos',price:18500},
+  {id:'0716',name:'Nueces S/C Negras x1kg',cat:'Frutos Secos',price:7000},
+  {id:'0336',name:'Nueces S/C Pecan x1kg',cat:'Frutos Secos',price:23500},
+  {id:'0286',name:'Pistachos Tostados y Salados x1kg',cat:'Frutos Secos',price:35000},
+  {id:'1914',name:'Pistachos Tostados y Salados x500g',cat:'Frutos Secos',price:18500},
+  {id:'0712',name:'Frutigran Granix Avena y F.Rojos x250g',cat:'Galletas Integrales',price:2100},
+  {id:'1033',name:'Frutigran Granix Salvado x250g',cat:'Galletas Integrales',price:1180},
+  {id:'0579',name:'Galletas Int. Murke Coco x1kg',cat:'Galletas Integrales',price:6630},
+  {id:'0847',name:'Galletas Int. Murke Jengibre x1kg',cat:'Galletas Integrales',price:6630},
+  {id:'0848',name:'Galletas Int. Murke Anís x1kg',cat:'Galletas Integrales',price:6630},
+  {id:'0845',name:'Galletas Int. Murke Naranja x1kg',cat:'Galletas Integrales',price:6630},
+  {id:'1933',name:'Galletas Int. Murke Limón x1kg',cat:'Galletas Integrales',price:6630},
+  {id:'1460',name:'Galletas Maria E Algarroba x185g',cat:'Galletas Integrales',price:2100},
+  {id:'0027',name:'Pepas La Francia Membrillo x1kg',cat:'Galletas Integrales',price:7370},
+  {id:'1903',name:'Pepas La Francia Batata x1kg',cat:'Galletas Integrales',price:7370},
+  {id:'2362',name:'Pepas La Francia Algarroba x1kg',cat:'Galletas Integrales',price:7370},
+  {id:'0553',name:'Granola Bulka Original x1kg',cat:'Granolas y Barritas',price:8700},
+  {id:'0547',name:'Granola Bulka c/Frutos x1kg',cat:'Granolas y Barritas',price:9150},
+  {id:'0605',name:'Granola Bulka c/Coco x1kg',cat:'Granolas y Barritas',price:7990},
+  {id:'0683',name:'Granola Bulka c/Chocolate x1kg',cat:'Granolas y Barritas',price:8800},
+  {id:'0606',name:'Granola Bulka c/Chips de Banana x1kg',cat:'Granolas y Barritas',price:9200},
+  {id:'2828',name:'Granola Granomax Natural x1kg',cat:'Granolas y Barritas',price:10600},
+  {id:'2885',name:'Granola Granomax Arándanos x1kg',cat:'Granolas y Barritas',price:10600},
+  {id:'2886',name:'Granola Granomax Chocolate x1kg',cat:'Granolas y Barritas',price:10600},
+  {id:'2887',name:'Granola Granomax Manzana x1kg',cat:'Granolas y Barritas',price:10600},
+  {id:'2163',name:'Barra Quinoa Choco. Wik x20g',cat:'Granolas y Barritas',price:890},
+  {id:'2380',name:'Barra F.Secos Mudra Armonía x40g',cat:'Granolas y Barritas',price:990},
+  {id:'2381',name:'Barra F.Secos Mudra Energía x40g',cat:'Granolas y Barritas',price:990},
+  {id:'1565',name:'Harina de Arroz Blanca x1kg',cat:'Harinas Especiales',price:1800},
+  {id:'1229',name:'Harina de Avena x1kg',cat:'Harinas Especiales',price:1900},
+  {id:'0517',name:'Harina de Garbanzo x1kg',cat:'Harinas Especiales',price:1700},
+  {id:'0615',name:'Harina de Chía x1kg',cat:'Harinas Especiales',price:1700},
+  {id:'1471',name:'Harina de Coco x1kg',cat:'Harinas Especiales',price:6500},
+  {id:'1257',name:'Harina de Lino x1kg',cat:'Harinas Especiales',price:2400},
+  {id:'0737',name:'Harina de Centeno x1kg',cat:'Harinas Especiales',price:2100},
+  {id:'2867',name:'Harina de Trigo Sarraceno x1kg',cat:'Harinas Especiales',price:2900},
+  {id:'1742',name:'Harina de Lenteja x1kg',cat:'Harinas Especiales',price:1700},
+  {id:'0174',name:'Salvado de Trigo x1kg',cat:'Harinas Especiales',price:1400},
+  {id:'0389',name:'Salvado de Avena x1kg',cat:'Harinas Especiales',price:1900},
+  {id:'0544',name:'Germen de Trigo x1kg',cat:'Harinas Especiales',price:1420},
+  {id:'3126',name:'Harina de Almendras Cumana c/P x1kg',cat:'Harinas Especiales',price:25900},
+  {id:'1155',name:'Harina de Almendras Cumana S/P x1kg',cat:'Harinas Especiales',price:28100},
+  {id:'1027',name:'Harina de Algarroba Oscura x1kg',cat:'Harinas Especiales',price:2800},
+  {id:'1288',name:'Harina de Arveja x1kg',cat:'Harinas Especiales',price:1600},
+  {id:'0595',name:'Boldo en Hojas El Peoncito x1kg',cat:'Hierbas y Tinturas',price:13800},
+  {id:'4097',name:'Cedrón Cumana x1kg',cat:'Hierbas y Tinturas',price:8370},
+  {id:'0831',name:'Cedrón en Hojas El Peoncito x1kg',cat:'Hierbas y Tinturas',price:8300},
+  {id:'1359',name:'Manzanilla El Peoncito Flor x1kg',cat:'Hierbas y Tinturas',price:34900},
+  {id:'1017',name:'Moringa El Peoncito Hojas x1kg',cat:'Hierbas y Tinturas',price:22900},
+  {id:'0636',name:'Sen en Hojas El Peoncito x1kg',cat:'Hierbas y Tinturas',price:6100},
+  {id:'1628',name:'Gotas Piperpol Carqueja x100cc',cat:'Hierbas y Tinturas',price:2200},
+  {id:'1615',name:'Gotas Piperpol Digestivo x100cc',cat:'Hierbas y Tinturas',price:2370},
+  {id:'1618',name:'Gotas Piperpol Diurético x100cc',cat:'Hierbas y Tinturas',price:3680},
+  {id:'1621',name:'Gotas Piperpol Depurativo x100cc',cat:'Hierbas y Tinturas',price:3680},
+  {id:'1636',name:'Gotas Piperpol Equinácea x100cc',cat:'Hierbas y Tinturas',price:4990},
+  {id:'1613',name:'Gotas Piperpol Reductora x100cc',cat:'Hierbas y Tinturas',price:3680},
+  {id:'1626',name:'Gotas Piperpol Valeriana x100cc',cat:'Hierbas y Tinturas',price:3300},
+  {id:'1614',name:'Gotas Piperpol Sedante x100cc',cat:'Hierbas y Tinturas',price:3250},
+  {id:'1617',name:'Gotas Piperpol Laxante x100cc',cat:'Hierbas y Tinturas',price:3250},
+  {id:'1620',name:'Gotas Piperpol Diabetes x100cc',cat:'Hierbas y Tinturas',price:3680},
+  {id:'4055',name:'Agua de Coco Qualicoco x1L',cat:'Jugos Naturales',price:5800},
+  {id:'4033',name:'Agua de Coco Qualicoco x200ml',cat:'Jugos Naturales',price:2290},
+  {id:'3244',name:'Bebida Aloe Vera Pureplus S/Az. x500ml',cat:'Jugos Naturales',price:3600},
+  {id:'1138',name:'Jugo Ccreciente Arándano Stevia x1.5L',cat:'Jugos Naturales',price:1900},
+  {id:'1181',name:'Jugo Ccreciente Jeng-Limón Stevia x1.5L',cat:'Jugos Naturales',price:1800},
+  {id:'1148',name:'Jugo Ccreciente Arán-Chía Stevia x1.5L',cat:'Jugos Naturales',price:1900},
+  {id:'0090',name:'Leche de Cabra La Primera Larga V. x1L',cat:'Leches no Tradicionales',price:4900},
+  {id:'1535',name:'Leche de Almendras Amandé x1L',cat:'Leches no Tradicionales',price:6100},
+  {id:'2451',name:'Leche de Almendras Amandé Liviana x1L',cat:'Leches no Tradicionales',price:3830},
+  {id:'0248',name:'Leche de Almendras Biba S/Azúcar x1L',cat:'Leches no Tradicionales',price:2990},
+  {id:'3026',name:'Leche de Almendras Vrink Original x1L',cat:'Leches no Tradicionales',price:2700},
+  {id:'3027',name:'Leche de Almendras Vrink S/Azúcar x1L',cat:'Leches no Tradicionales',price:2700},
+  {id:'1086',name:'Leche de Avena Biba x1L',cat:'Leches no Tradicionales',price:1390},
+  {id:'3131',name:'Leche de Coco Chennai x400ml',cat:'Leches no Tradicionales',price:4990},
+  {id:'0493',name:'Levadura Nutrileva Manzana x200g',cat:'Levaduras Nutricionales',price:5900},
+  {id:'0653',name:'Levadura Nutrileva Natural x200g',cat:'Levaduras Nutricionales',price:6400},
+  {id:'0655',name:'Levadura Nutrileva Queso x200g',cat:'Levaduras Nutricionales',price:7800},
+  {id:'0656',name:'Levadura Nutrileva Natural x500g',cat:'Levaduras Nutricionales',price:13900},
+  {id:'1038',name:'Mermelada Brik Durazno x450g',cat:'Mermeladas',price:3300},
+  {id:'1039',name:'Mermelada Brik Frutilla x450g',cat:'Mermeladas',price:4300},
+  {id:'3253',name:'Mermelada Brik Membrillo x450g',cat:'Mermeladas',price:2300},
+  {id:'2334',name:'Mermelada Brik Naranja x450g',cat:'Mermeladas',price:3100},
+  {id:'3042',name:'Mermelada El Brocal Arándanos x420g',cat:'Mermeladas',price:4800},
+  {id:'3037',name:'Mermelada El Brocal Durazno x420g',cat:'Mermeladas',price:3800},
+  {id:'3040',name:'Mermelada El Brocal Frutilla x420g',cat:'Mermeladas',price:4400},
+  {id:'3039',name:'Mermelada El Brocal Higo x420g',cat:'Mermeladas',price:4100},
+  {id:'3050',name:'Mermelada El Brocal Membrillo x420g',cat:'Mermeladas',price:3700},
+  {id:'3038',name:'Mermelada El Brocal Naranja x420g',cat:'Mermeladas',price:3800},
+  {id:'3041',name:'Mermelada El Brocal F.Rojos x420g',cat:'Mermeladas',price:4800},
+  {id:'1952',name:'Mermelada Magdalena Stevia Arándano x400g',cat:'Mermeladas',price:6900},
+  {id:'1046',name:'Mermelada Magdalena Stevia Frutilla x400g',cat:'Mermeladas',price:5900},
+  {id:'0221',name:'Arroz Yinyang Integral Orgánico x500g',cat:'Orgánicos',price:1990},
+  {id:'0273',name:'Azúcar de Caña Yinyang Org. x1kg',cat:'Orgánicos',price:4700},
+  {id:'0526',name:'Azúcar Mascabo Yinyang Org. x500g',cat:'Orgánicos',price:2870},
+  {id:'1792',name:'Garbanzo Yinyang Orgánico x500g',cat:'Orgánicos',price:2800},
+  {id:'4018',name:'Miel Orgánica Las Quinas Crema x500g',cat:'Orgánicos',price:5200},
+  {id:'1308',name:'Miel Orgánica Las Quinas x500g',cat:'Orgánicos',price:5200},
+  {id:'4027',name:'Miel Orgánica Pampagourmet x500g',cat:'Orgánicos',price:4700},
+  {id:'3054',name:'Yerba Mate Orgánica Larga Vida x500g',cat:'Orgánicos',price:4100},
+  {id:'2862',name:'Mayonesa Orgánica Pampagourmet x290g',cat:'Orgánicos',price:5100},
+  {id:'2863',name:'Mostaza Orgánica Pampagourmet x300g',cat:'Orgánicos',price:6370},
+  {id:'3013',name:'Tallarín Orgánico Pampagourmet Trad. x500g',cat:'Orgánicos',price:4400},
+  {id:'3138',name:'Tallarín Orgánico Pampagourmet Tomate x500g',cat:'Orgánicos',price:4600},
+  {id:'3139',name:'Tallarín Orgánico Pampagourmet Espin. x500g',cat:'Orgánicos',price:4900},
+  {id:'1082',name:'Pan La Francia c/Salvado x560g',cat:'Panificación Artesanal',price:3220},
+  {id:'1131',name:'Pan La Francia c/Semillas x560g',cat:'Panificación Artesanal',price:3220},
+  {id:'1225',name:'Pan La Francia Calabaza x600g',cat:'Panificación Artesanal',price:3690},
+  {id:'2720',name:'Pan La Francia 3 Harinas x560g',cat:'Panificación Artesanal',price:3220},
+  {id:'1064',name:'Pan La Francia Doble Int. x560g',cat:'Panificación Artesanal',price:3220},
+  {id:'2371',name:'Pan Mylen Multisemi. x550g',cat:'Panificación Artesanal',price:2500},
+  {id:'2372',name:'Pan Mylen Salvado/Avena x550g',cat:'Panificación Artesanal',price:2500},
+  {id:'2541',name:'Pan Mylen Tradicional x550g',cat:'Panificación Artesanal',price:2500},
+  {id:'0520',name:'Azúcar Mascabo x1kg',cat:'Repostería',price:3250},
+  {id:'0444',name:'Azúcar Rubia Casablanca x1kg',cat:'Repostería',price:2500},
+  {id:'0186',name:'Miel Curupaity x1kg',cat:'Repostería',price:6900},
+  {id:'0255',name:'Miel Curupaity x500g',cat:'Repostería',price:4550},
+  {id:'1154',name:'Miel Curupaity x250g',cat:'Repostería',price:2700},
+  {id:'4088',name:'Miel Melife x250g',cat:'Repostería',price:2800},
+  {id:'4089',name:'Miel Melife x500g',cat:'Repostería',price:4500},
+  {id:'2786',name:'Pasta Maní Entrenuts Natural x370g',cat:'Repostería',price:2490},
+  {id:'2787',name:'Pasta Maní Entrenuts c/Stevia x370g',cat:'Repostería',price:2490},
+  {id:'2817',name:'Pasta Maní Entrenuts c/Cacao x370g',cat:'Repostería',price:2570},
+  {id:'2818',name:'Pasta Maní Entrenuts c/Coco x370g',cat:'Repostería',price:2570},
+  {id:'0764',name:'Pasta Maní Nutz x380g',cat:'Repostería',price:2550},
+  {id:'0989',name:'Drops Mapsa Semiamargo x500g',cat:'Repostería',price:4290},
+  {id:'2398',name:'Drops Mapsa Blanco x500g',cat:'Repostería',price:4290},
+  {id:'0226',name:'Levadura Levex Instant. x2u',cat:'Repostería',price:915},
+  {id:'0435',name:'Esencia de Vainilla GBH 110cm',cat:'Repostería',price:1350},
+  {id:'0058',name:'Coco Rallado Cumana High Fat x1kg',cat:'Repostería',price:11600},
+  {id:'1357',name:'Coco Rallado Cumana High Fat x150g',cat:'Repostería',price:1900},
+  {id:'0446',name:'Crocante de Maní Painé x1kg',cat:'Repostería',price:6300},
+  {id:'0550',name:'Sal Marina Macrozen Fina x500g',cat:'Sal Marina y Rosada',price:1550},
+  {id:'0508',name:'Sal Marina Macrozen Gruesa x500g',cat:'Sal Marina y Rosada',price:1550},
+  {id:'0919',name:'Sal Rosa Fina Himalaya x1kg',cat:'Sal Marina y Rosada',price:2390},
+  {id:'2503',name:'Sal Rosa Gruesa Himalaya x1kg',cat:'Sal Marina y Rosada',price:4200},
+  {id:'1218',name:'Sal Negra Fina Himalaya x1kg',cat:'Sal Marina y Rosada',price:5600},
+  {id:'1273',name:'Sal S/Sodio Argendiet Natural x70g',cat:'Sal Marina y Rosada',price:2560},
+  {id:'1336',name:'Sal S/Sodio Argendiet Natural x170g',cat:'Sal Marina y Rosada',price:5600},
+  {id:'2915',name:'Sal S/Sodio Buckingham Natural x70g',cat:'Sal Marina y Rosada',price:2250},
+  {id:'0296',name:'Semilla de Chía x1kg',cat:'Semillas',price:6900},
+  {id:'1706',name:'Semilla de Chía Premium x1kg',cat:'Semillas',price:8400},
+  {id:'0295',name:'Semilla de Girasol S/Cáscara x1kg',cat:'Semillas',price:3900},
+  {id:'0294',name:'Semilla de Lino x1kg',cat:'Semillas',price:2300},
+  {id:'1920',name:'Semilla de Lino Dorado x1kg',cat:'Semillas',price:1800},
+  {id:'2205',name:'Semilla de Quinoa Cumana x1kg',cat:'Semillas',price:8900},
+  {id:'0293',name:'Semilla de Sésamo Cumana Blanco x1kg',cat:'Semillas',price:7150},
+  {id:'0474',name:'Semilla de Sésamo Cumana Negro x1kg',cat:'Semillas',price:9900},
+  {id:'0437',name:'Semilla de Amaranto Cumana x1kg',cat:'Semillas',price:4130},
+  {id:'1243',name:'Semilla de Zapallo Premium x1kg',cat:'Semillas',price:14400},
+  {id:'0523',name:'Mix de Semillas x1kg',cat:'Semillas',price:4200},
+  {id:'3175',name:'Semilla Desc. Sarraceno Olienka x500g',cat:'Semillas',price:3900},
+  {id:'2810',name:'Citrato de Magnesio MG x100g',cat:'Suplementos',price:5900},
+  {id:'2967',name:'Ácido Ascórbico Vitamina C x100g',cat:'Suplementos',price:7600},
+  {id:'0145',name:'Maca Kallpa Blanca x500g',cat:'Suplementos',price:1450},
+  {id:'1121',name:'Maca Kallpa Negra x150g',cat:'Suplementos',price:1450},
+  {id:'1075',name:'Plata Coloidal x250ml',cat:'Suplementos',price:6800},
+  {id:'0304',name:'Polen Granulado El Peoncito x1kg',cat:'Suplementos',price:19900},
+  {id:'0310',name:'Polen Granulado x500g',cat:'Suplementos',price:10500},
+  {id:'4057',name:'Magnesio Sundance x100cap',cat:'Suplementos',price:11900},
+  {id:'3195',name:'Vitamina B-12 500mcg Sundance x90tab',cat:'Suplementos',price:6800},
+  {id:'2958',name:'Vitamina C Sundance x90tab',cat:'Suplementos',price:8915},
+  {id:'4034',name:'Ashwagandha Nature Truth x90c',cat:'Suplementos',price:30600},
+  {id:'4039',name:'Melena de León Natures x50c',cat:'Suplementos',price:29900},
+  {id:'0816',name:'Colágeno Hidrolizado x90g',cat:'Suplementos',price:650},
+  {id:'0746',name:'Yerba Mate Tucangua x1kg',cat:'Yerba Mate y Té',price:3990},
+  {id:'1821',name:'Yerba Mate Tucangua Orgánica x500g',cat:'Yerba Mate y Té',price:4100},
+  {id:'2837',name:'Yerba Mate Tucangua Orgánica x1kg',cat:'Yerba Mate y Té',price:6860},
+  {id:'1135',name:'Yerba Mate Comp. Piperpol x500g',cat:'Yerba Mate y Té',price:1490},
+  {id:'1136',name:'Yerba Mate Comp. Piperpol Frutal x500g',cat:'Yerba Mate y Té',price:1390},
+  {id:'0199',name:'Yerba Mate Ajedrez Premium x500g',cat:'Yerba Mate y Té',price:2250},
+  {id:'1191',name:'Yerba Antiacida Ajedrez Canch. C/P x1kg',cat:'Yerba Mate y Té',price:3900},
+  {id:'0194',name:'Té Negro en Hebras x1kg',cat:'Yerba Mate y Té',price:2350},
+  {id:'1093',name:'Té Matcha Molido x100g',cat:'Yerba Mate y Té',price:9400},
+  {id:'0589',name:'Té Piperpol Digestivo x25saq',cat:'Yerba Mate y Té',price:3100},
+  {id:'1612',name:'Té Piperpol Manzanilla x25saq',cat:'Yerba Mate y Té',price:1600},
+  {id:'0826',name:'Té Piperpol Verde x25saq',cat:'Yerba Mate y Té',price:1400},
+  {id:'0835',name:'Té Piperpol Reductora Plan 7D x25saq',cat:'Yerba Mate y Té',price:3490},
+  {id:'0822',name:'Té Piperpol Sedante x25saq',cat:'Yerba Mate y Té',price:3490},
+  {id:'1611',name:'Té Piperpol Tilo x25saq',cat:'Yerba Mate y Té',price:3600},
+  {id:'3127',name:'Té Dilmah Moroccan Mint x10saq',cat:'Yerba Mate y Té',price:2500},
+  {id:'3135',name:'Té Dilmah Early Grey x10saq',cat:'Yerba Mate y Té',price:2900},
+  {id:'3305',name:'Té Dilmah Ceylon Supreme x10saq',cat:'Yerba Mate y Té',price:2900},
+  {id:'3128',name:'Té Dilmah Jasmine x10saq',cat:'Yerba Mate y Té',price:2500},
+];
+
+const cats=['todos',...new Set(products.map(p=>p.cat))];
+
+function buildFilters(){
+  document.getElementById('filterBar').innerHTML=cats.map(c=>`<button class="filter-btn${c==='todos'?' active':''}" onclick="setFilter('${c.replace(/'/g,"\\'")}',this)">${c==='todos'?'Todos':c}</button>`).join('');
+}
+
+function setFilter(c,btn){filter=c;pg=1;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render();}
+function handleSearch(){q=document.getElementById('searchInput').value.toLowerCase();pg=1;render();}
+
+function getFiltered(){
+  return products.filter(p=>{
+    const cOk=filter==='todos'||p.cat===filter;
+    const sOk=!q||p.name.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q);
+    return cOk&&sOk;
+  });
+}
+
+function fp(n){return '$'+n.toLocaleString('es-AR');}
+
+function render(){
+  const f=getFiltered(),total=f.length,pages=Math.ceil(total/PER_PAGE),s=(pg-1)*PER_PAGE,slice=f.slice(s,s+PER_PAGE);
+  document.getElementById('resultCount').textContent=`Mostrando ${Math.min(s+1,total)}–${Math.min(s+PER_PAGE,total)} de ${total} productos`;
+  const body=document.getElementById('productsBody'),noRes=document.getElementById('noResults');
+  if(!slice.length){body.innerHTML='';noRes.style.display='block';document.getElementById('pagination').innerHTML='';return;}
+  noRes.style.display='none';
+  body.innerHTML=slice.map(p=>{
+    const inc=cart[p.id];
+    return `<tr onclick="addToCart('${p.id}')">
+      <td class="td-code">${p.id}</td>
+      <td class="td-name">${p.name}</td>
+      <td class="td-cat">${p.cat}</td>
+      <td class="td-price">${fp(p.price)}</td>
+      <td class="td-add"><button class="add-btn${inc?' added':''}" id="btn-${p.id}">${inc?inc.qty:'+'}</button></td>
+    </tr>`;
+  }).join('');
+  renderPag(pages);
+}
+
+function renderPag(tp){
+  if(tp<=1){document.getElementById('pagination').innerHTML='';return;}
+  let h=`<button class="page-btn" onclick="goP(${pg-1})" ${pg===1?'disabled':''}>‹</button>`;
+  const range=[];
+  for(let i=Math.max(1,pg-2);i<=Math.min(tp,pg+2);i++)range.push(i);
+  if(range[0]>1){h+=`<button class="page-btn" onclick="goP(1)">1</button>`;if(range[0]>2)h+=`<span class="page-info">…</span>`;}
+  range.forEach(i=>{h+=`<button class="page-btn${i===pg?' active':''}" onclick="goP(${i})">${i}</button>`;});
+  if(range[range.length-1]<tp){if(range[range.length-1]<tp-1)h+=`<span class="page-info">…</span>`;h+=`<button class="page-btn" onclick="goP(${tp})">${tp}</button>`;}
+  h+=`<button class="page-btn" onclick="goP(${pg+1})" ${pg===tp?'disabled':''}>›</button>`;
+  document.getElementById('pagination').innerHTML=h;
+}
+
+function goP(p){const f=getFiltered(),tp=Math.ceil(f.length/PER_PAGE);if(p<1||p>tp)return;pg=p;render();document.getElementById('productos').scrollIntoView({behavior:'smooth',block:'start'});}
+
+function addToCart(id){
+  const p=products.find(x=>x.id===id);if(!p)return;
+  cart[id]=cart[id]?{...cart[id],qty:cart[id].qty+1}:{...p,qty:1};
+  updateCartUI();render();
+  showToast('✅ '+p.name.substring(0,35)+(p.name.length>35?'...':'')+' agregado');
+}
+
+function changeQty(id,d){if(!cart[id])return;cart[id].qty+=d;if(cart[id].qty<=0)delete cart[id];updateCartUI();render();}
+
+function updateCartUI(){
+  const total=Object.values(cart).reduce((s,i)=>s+i.price*i.qty,0);
+  const count=Object.values(cart).reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cartTotal').textContent=fp(total);
+  const cc=document.getElementById('cartCount');cc.textContent=count;cc.style.display=count>0?'flex':'none';
+  const ci=document.getElementById('cartItems');
+  if(!Object.keys(cart).length){ci.innerHTML='<div class="cart-empty"><div class="ce-icon">🌿</div><p>Tu carrito está vacío.</p></div>';return;}
+  ci.innerHTML=Object.values(cart).map(i=>`<div class="cart-item"><div class="ci-info"><div class="ci-name">${i.name}</div><div class="ci-price">${fp(i.price)} c/u · Total: ${fp(i.price*i.qty)}</div><div class="ci-qty"><button class="qty-btn" onclick="changeQty('${i.id}',-1)">−</button><span class="qty-num">${i.qty}</span><button class="qty-btn" onclick="changeQty('${i.id}',1)">+</button></div></div></div>`).join('');
+}
+
+function toggleCart(){document.getElementById('cartDrawer').classList.toggle('open');document.getElementById('cartOverlay').classList.toggle('open');}
+
+function pedidoWA(){
+  const items=Object.values(cart);if(!items.length){showToast('El carrito está vacío');return;}
+  const lines=items.map(i=>`• ${i.qty}x ${i.name} → ${fp(i.price*i.qty)}`).join('\n');
+  const total=items.reduce((s,i)=>s+i.price*i.qty,0);
+  const msg=encodeURIComponent(`¡Hola Don Diego! 👋\n\nQuiero hacer el siguiente pedido:\n\n${lines}\n\n💰 *Total estimado: ${fp(total)}*\n\nLista de precios vigente 18/03/2026. ¡Gracias! 🌿`);
+  window.open(`https://wa.me/${WA}?text=${msg}`,'_blank');
+}
+
+function enviarPedido(){
+  const n=document.getElementById('nombre').value.trim(),a=document.getElementById('apellido').value.trim(),t=document.getElementById('telefono').value.trim(),pt=document.getElementById('pedidoTexto').value.trim();
+  if(!n||!a||!t||!pt){showToast('⚠️ Completá los campos obligatorios');return;}
+  const e=document.getElementById('entrega').value,d=document.getElementById('direccion').value,em=document.getElementById('email').value;
+  const msg=encodeURIComponent(`¡Hola Don Diego! Nuevo pedido:\n\n👤 *${n} ${a}*\n📱 ${t}${em?'\n📧 '+em:''}${e?'\n🚚 '+e:''}${d?'\n📍 '+d:''}\n\n📝 *Pedido:*\n${pt}\n\n¡Gracias! 🌿`);
+  window.open(`https://wa.me/${WA}?text=${msg}`,'_blank');
+  document.getElementById('successMsg').style.display='block';
+  setTimeout(()=>{document.getElementById('successMsg').style.display='none';},5000);
+}
+
+function toggleDir(){document.getElementById('dirGroup').style.display=document.getElementById('entrega').value==='Envío a domicilio'?'block':'none';}
+
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+
+function toggleMenu(){const nav=document.querySelector('.nav-links');nav.style.display=nav.style.display==='flex'?'':nav.style.cssText='display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:var(--green-deep);padding:24px;gap:20px;z-index:50;';}
+
+buildFilters();render();
+</script>
+</body>
+</html>
