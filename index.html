@@ -243,9 +243,9 @@
       <span class="nav-logo-text">Don <span>Diego</span></span>
     </a>
     <ul class="nav-links">
-      <li><a href="#productos">Productos</a></li>
-      <li><a href="#pedido">Cómo pedir</a></li>
-      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#productos" onclick="event.preventDefault();document.getElementById('productos').scrollIntoView({behavior:'smooth'})">Productos</a></li>
+<li><a href="#pedido" onclick="event.preventDefault();document.getElementById('pedido').scrollIntoView({behavior:'smooth'})">Cómo pedir</a></li>
+<li><a href="#nosotros" onclick="event.preventDefault();document.getElementById('nosotros').scrollIntoView({behavior:'smooth'})">Nosotros</a></li>
     </ul>
     <button class="hamburger" onclick="toggleMenu()">☰</button>
   </nav>
@@ -256,8 +256,8 @@
     <h1 class="hero-title">La naturaleza<br>en tu <em>mesa</em></h1>
     <p class="hero-sub">Más de 1.000 productos naturales, orgánicos y saludables. Directo al precio de lista.</p>
     <div class="hero-actions">
-      <a href="#productos" class="btn-primary">Ver Productos</a>
-      <a href="#pedido" class="btn-secondary">¿Cómo pedir?</a>
+     <a href="#productos" class="btn-primary" onclick="event.preventDefault();document.getElementById('productos').scrollIntoView({behavior:'smooth'})">Ver Productos</a>
+<a href="#pedido" class="btn-secondary" onclick="event.preventDefault();document.getElementById('pedido').scrollIntoView({behavior:'smooth'})">¿Cómo pedir?</a>
     </div>
   </div>
   <svg class="hero-wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
