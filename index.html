@@ -215,6 +215,29 @@
   .notice-box{background:rgba(212,168,67,.1);border:1px solid rgba(212,168,67,.4);border-radius:8px;padding:16px 20px;margin-top:32px;display:flex;flex-direction:column;gap:8px;}
   .notice-item{display:flex;align-items:flex-start;gap:10px;font-size:.85rem;color:var(--brown-mid);line-height:1.5;}
   .notice-item span:first-child{font-size:1rem;flex-shrink:0;}
+
+  /* PRODUCTO DESTACADO */
+  #destacado{background:var(--cream);padding:60px 0 0;}
+  #destacado .inner{max-width:1100px;margin:0 auto;padding:0 40px;}
+  .featured-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:16px;overflow:hidden;box-shadow:0 12px 50px var(--shadow);}
+  .featured-img{position:relative;overflow:hidden;min-height:400px;}
+  .featured-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+  .featured-card:hover .featured-img img{transform:scale(1.04);}
+  .featured-badge{position:absolute;top:20px;left:20px;background:var(--accent);color:var(--brown-dark);font-size:.7rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:40px;}
+  .featured-info{background:var(--green-deep);padding:48px 44px;display:flex;flex-direction:column;justify-content:center;}
+  .featured-line{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--green-light);font-weight:700;margin-bottom:12px;}
+  .featured-name{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--cream);line-height:1.1;margin-bottom:20px;}
+  .featured-desc{color:rgba(249,243,232,.75);font-size:.92rem;line-height:1.7;margin-bottom:32px;}
+  .featured-price{font-family:'DM Mono',monospace;font-size:2rem;color:var(--accent);font-weight:500;margin-bottom:32px;}
+  .featured-price span{font-size:.8rem;color:rgba(249,243,232,.5);font-family:'Plus Jakarta Sans',sans-serif;display:block;margin-bottom:4px;letter-spacing:1px;text-transform:uppercase;}
+  .btn-featured{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--brown-dark);padding:14px 28px;border-radius:4px;font-weight:800;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all .3s;font-family:'Plus Jakarta Sans',sans-serif;}
+  .btn-featured:hover{background:var(--cream);}
+  @media(max-width:900px){
+    .featured-card{grid-template-columns:1fr;}
+    .featured-img{min-height:280px;}
+    .featured-info{padding:32px 24px;}
+    #destacado .inner{padding:0 16px;}
+  }
   @media(max-width:900px){
     nav{padding:20px 24px;}
     .nav-links{display:none;}
@@ -234,7 +257,7 @@
     /* drawer full width en mobile */
     .cart-drawer{width:100vw;}
     .cf-row{grid-template-columns:1fr;}
- #nosotros .inner{text-align:center;padding:0 17px;}
+    #nosotros .inner{text-align:center;}
     .about-text{text-align:left;}
     .about-stats{margin:0 auto;}
     .stat-card{text-align:center;}
@@ -281,6 +304,30 @@
   </div>
 </div>
 </div>
+
+
+<section id="destacado">
+  <div class="inner">
+    <p class="section-label">Especial Don Diego</p>
+    <h2 class="section-title">Producto <span>Destacado</span></h2>
+    <div class="featured-card">
+      <div class="featured-img">
+        <img src="bandeja.png" alt="Bandeja Dulce Don Diego">
+        <span class="featured-badge">⭐ Destacado</span>
+      </div>
+      <div class="featured-info">
+        <p class="featured-line">Línea Cápsula Gourmet</p>
+        <h3 class="featured-name">Bandeja Dulce</h3>
+        <p class="featured-desc">Una selección especial de frutos secos, chocolates y snacks premium presentados en una elegante bandeja. Ideal para regalar o disfrutar en casa.</p>
+        <div class="featured-price">
+          <span>Precio</span>
+          $20.000
+        </div>
+        <a href="https://wa.me/5493412299911?text=Hola%2C%20quiero%20consultar%20por%20la%20Bandeja%20Dulce%20Don%20Diego" target="_blank" class="btn-featured">Consultar por WhatsApp →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="productos">
   <div class="inner">
