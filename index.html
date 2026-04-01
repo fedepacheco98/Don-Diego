@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Don Diego – Productos Naturales</title>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400;1,6..96,700&family=Nunito:wght@300;400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400;1,6..96,700&family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{--cream:#f9f3e8;--brown-dark:#3b2a1a;--brown-mid:#7a4f2e;--brown-light:#c49a6c;--green-deep:#3a5a3a;--green-mid:#5a8a4a;--green-light:#a8c89a;--accent:#d4a843;--white:#fffef9;--shadow:rgba(59,42,26,0.15);}
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -22,8 +22,8 @@
   /* LOGO CIRCULAR */
   .nav-logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
   .nav-logo-img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,168,67,.6);background:var(--cream);flex-shrink:0;}
-  .nav-logo-text{font-family:'Bodoni Moda',serif;color:var(--cream);font-size:1.5rem;font-weight:700;letter-spacing:1px;}
-  .nav-logo-text span{color:var(--accent);font-style:italic;}
+  .nav-logo-text{font-family:'Bodoni Moda',serif;color:#111111;font-size:1.5rem;font-weight:700;letter-spacing:1px;}
+  .nav-logo-text span{color:#111111;font-style:normal;text-transform:uppercase;}
   .footer-logo-img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid rgba(212,168,67,.5);background:var(--cream);display:block;margin:0 auto 16px;}
   .logo{font-family:'Bodoni Moda',serif;color:var(--cream);font-size:1.6rem;font-weight:700;letter-spacing:1px;text-decoration:none;}
   .logo span{color:var(--accent);font-style:italic;}
@@ -175,11 +175,11 @@
   .about-text p{margin-bottom:20px;}
   .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
   .stat-card{background:rgba(249,243,232,.07);border:1px solid rgba(249,243,232,.15);border-radius:8px;padding:28px 24px;text-align:center;}
-  .stat-num{font-family:'Bodoni Moda',serif;font-size:2.8rem;color:var(--accent);display:block;line-height:1;margin-bottom:6px;font-weight:700;}
+  .stat-num{font-family:'Nunito',sans-serif;font-size:3rem;color:var(--accent);display:block;line-height:1;margin-bottom:6px;font-weight:900;}
   .stat-label{color:rgba(249,243,232,.7);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;}
   footer{background:var(--brown-dark);padding:60px;text-align:center;}
-  .footer-logo{font-family:'Bodoni Moda',serif;color:var(--cream);font-size:2rem;margin-bottom:16px;display:block;font-weight:700;}
-  .footer-logo span{color:var(--accent);font-style:italic;}
+  .footer-logo{font-family:'Bodoni Moda',serif;color:#111111;font-size:2rem;margin-bottom:16px;display:block;font-weight:700;}
+  .footer-logo span{color:#111111;font-style:normal;text-transform:uppercase;}
   .footer-tagline{color:rgba(249,243,232,.5);font-size:.85rem;margin-bottom:32px;letter-spacing:1px;}
   .footer-divider{border:none;border-top:1px solid rgba(249,243,232,.1);margin:28px auto;max-width:200px;}
   .footer-copy{color:rgba(249,243,232,.4);font-size:.78rem;letter-spacing:1px;}
@@ -248,7 +248,7 @@
     <!-- LOGO NAV -->
     <a href="#" class="nav-logo-wrap">
       <img src="logodondiego.png" alt="Don Diego" class="nav-logo-img">
-      <span class="nav-logo-text">Don <span>Diego</span></span>
+      <span class="nav-logo-text">DON <span>DIEGO</span></span>
     </a>
     <ul class="nav-links">
       <li><a href="#productos" onclick="event.preventDefault();document.getElementById('productos').scrollIntoView({behavior:'smooth'})">Productos</a></li>
@@ -348,7 +348,7 @@
 <section id="nosotros">
   <div class="inner">
     <p class="section-label">Nuestra historia</p>
-    <h2 class="section-title">Por qué <span style="color:var(--accent)">Don Diego</span></h2>
+    <h2 class="section-title">Por qué <span style="color:#111111;font-style:normal;text-transform:uppercase;">DON DIEGO</span></h2>
     <div class="about-grid">
       <div class="about-text">
         <p>Don Diego nació para simplificar el acceso a una alimentación saludable en Rosario. Somos distribuidores de productos naturales, orgánicos y envasados de primera línea.</p>
@@ -446,7 +446,7 @@
 <footer>
   <!-- LOGO FOOTER -->
   <img src="logodondiego.png" alt="Don Diego" class="footer-logo-img">
-  <span class="footer-logo">Don <span>Diego</span></span>
+  <span class="footer-logo">DON <span>DIEGO</span></span>
   <p class="footer-tagline">Productos naturales con amor local · Rosario, Argentina</p>
   <hr class="footer-divider">
   <p class="footer-copy">© 2026 Don Diego Productos Naturales · Todos los derechos reservados</p>
