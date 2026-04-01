@@ -175,7 +175,7 @@
   .about-text p{margin-bottom:20px;}
   .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
   .stat-card{background:rgba(249,243,232,.07);border:1px solid rgba(249,243,232,.15);border-radius:8px;padding:28px 24px;text-align:center;}
-  .stat-num{font-family:'Nunito',sans-serif;font-size:2.8rem;color:var(--accent);display:block;line-height:1;margin-bottom:6px;font-weight:700;}
+  .stat-num{font-family:'Bodoni Moda',serif;font-size:2.8rem;color:var(--accent);display:block;line-height:1;margin-bottom:6px;font-weight:700;}
   .stat-label{color:rgba(249,243,232,.7);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;}
   footer{background:var(--brown-dark);padding:60px;text-align:center;}
   .footer-logo{font-family:'Bodoni Moda',serif;color:var(--cream);font-size:2rem;margin-bottom:16px;display:block;font-weight:700;}
@@ -355,7 +355,7 @@
       </div>
       <div class="about-stats">
         <div class="stat-card"><span class="stat-num">+1300</span><span class="stat-label">Productos</span></div>
-        <div class="stat-card"><span class="stat-num">+40</span><span class="stat-label">Rubros</span></div>
+        <div class="stat-card"><span class="stat-num">40+</span><span class="stat-label">Rubros</span></div>
         <div class="stat-card"><span class="stat-num">100%</span><span class="stat-label">Natural</span></div>
         <div class="stat-card"><span class="stat-num">♡</span><span class="stat-label">Con amor local</span></div>
       </div>
@@ -1712,13 +1712,13 @@ function enviarCarritoWA(){
   const entrega=document.getElementById('cf-entrega').value||'No especificado';
   const dir=document.getElementById('cf-direccion').value||'';
   const notas=document.getElementById('cf-notas').value||'';
-  let msg=`🛒 *NUEVO PEDIDO - Don Diego*\n\n`;
-  msg+=`👤 *Cliente:* ${nombre} ${apellido}\n📞 *Tel:* ${tel}\n`;
-  if(document.getElementById('cf-email').value)msg+=`📧 *Email:* ${document.getElementById('cf-email').value}\n`;
-  msg+=`🚚 *Entrega:* ${entrega}${dir?' - '+dir:''}\n\n📦 *Productos:*\n`;
+  let msg=`*NUEVO PEDIDO - Don Diego*\n\n`;
+  msg+=`Cliente: ${nombre} ${apellido}\nTel: ${tel}\n`;
+  if(document.getElementById('cf-email').value)msg+=`Email: ${document.getElementById('cf-email').value}\n`;
+  msg+=`Entrega: ${entrega}${dir?' - '+dir:''}\n\nProductos:\n`;
   items.forEach(i=>{msg+=`• ${i.qty}x ${i.name} — ${fmt(i.price*i.qty)}\n`;});
-  msg+=`\n💰 *Total: ${fmt(total)}*`;
-  if(notas)msg+=`\n\n📝 *Notas:* ${notas}`;
+  msg+=`\nTotal: ${fmt(total)}`;
+  if(notas)msg+=`\n\nNotas: ${notas}`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
 }
 
@@ -1734,11 +1734,11 @@ function enviarPedido(){
   const entrega=document.getElementById('entrega').value||'No especificado';
   const dir=document.getElementById('direccion').value||'';
   const pedido=document.getElementById('pedidoTexto').value||'';
-  let msg=`💬 *CONSULTA - Don Diego*\n\n`;
-  msg+=`👤 *Nombre:* ${nombre} ${apellido}\n📞 *Tel:* ${tel}\n`;
-  if(document.getElementById('email').value)msg+=`📧 *Email:* ${document.getElementById('email').value}\n`;
-  msg+=`🚚 *Entrega:* ${entrega}${dir?' - '+dir:''}\n\n`;
-  if(pedido)msg+=`📝 *Consulta:*\n${pedido}`;
+  let msg=`CONSULTA - Don Diego\n\n`;
+  msg+=`Nombre: ${nombre} ${apellido}\nTel: ${tel}\n`;
+  if(document.getElementById('email').value)msg+=`Email: ${document.getElementById('email').value}\n`;
+  msg+=`Entrega: ${entrega}${dir?' - '+dir:''}\n\n`;
+  if(pedido)msg+=`Consulta:\n${pedido}`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
   document.getElementById('successMsg').style.display='block';
 }
